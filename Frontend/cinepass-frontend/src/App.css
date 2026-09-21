@@ -1,0 +1,1490 @@
+/* =========================================================
+   CINEPASS - COMPLETE APPLICATION STYLES
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: #1f2937;
+  background: #f5f5f7;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #f5f5f7;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar {
+  height: 68px;
+  width: 100%;
+  background: #111827;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 7%;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-logo {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  cursor: pointer;
+}
+
+.navbar nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.navbar nav button {
+  background: transparent;
+  border: none;
+
+  color: #e5e7eb;
+
+  padding: 9px 13px;
+
+  border-radius: 7px;
+
+  transition: 0.2s;
+}
+
+.navbar nav button:hover {
+  background: #374151;
+  color: white;
+}
+
+.navbar .logout {
+  background: #e50914;
+  color: white;
+  margin-left: 8px;
+}
+
+.navbar .logout:hover {
+  background: #c70710;
+}
+
+.welcome {
+  color: #d1d5db;
+  font-size: 14px;
+  margin: 0 8px;
+}
+
+/* =========================================================
+   AUTH PAGE
+   ========================================================= */
+
+.auth-page {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      #374151,
+      transparent 45%
+    ),
+    linear-gradient(
+      135deg,
+      #0f172a,
+      #111827
+    );
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 430px;
+
+  background: white;
+
+  padding: 42px;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+.logo {
+  text-align: center;
+
+  font-size: 30px;
+  font-weight: 800;
+
+  margin-bottom: 25px;
+}
+
+.auth-card h1 {
+  text-align: center;
+
+  margin: 0 0 8px;
+
+  font-size: 27px;
+}
+
+.auth-subtitle {
+  text-align: center;
+
+  color: #6b7280;
+
+  line-height: 1.5;
+
+  margin-bottom: 28px;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-card input {
+  width: 100%;
+
+  padding: 14px 15px;
+
+  margin-bottom: 14px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 8px;
+
+  outline: none;
+
+  transition: 0.2s;
+}
+
+.auth-card input:focus {
+  border-color: #e50914;
+
+  box-shadow:
+    0 0 0 3px rgba(229, 9, 20, 0.1);
+}
+
+.red-btn {
+  border: none;
+
+  background: #e50914;
+
+  color: white;
+
+  padding: 13px 20px;
+
+  border-radius: 8px;
+
+  font-weight: 700;
+
+  transition: 0.2s;
+
+  cursor: pointer;
+}
+
+.red-btn:hover {
+  background: #c90711;
+
+  transform: translateY(-1px);
+}
+
+.red-btn:disabled {
+  background: #9ca3af;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+.switch {
+  text-align: center;
+
+  color: #6b7280;
+
+  margin-top: 20px;
+}
+
+.switch button {
+  border: none;
+
+  background: none;
+
+  color: #e50914;
+
+  font-weight: 700;
+
+  margin-left: 5px;
+}
+
+.message {
+  margin-top: 16px;
+
+  padding: 12px 15px;
+
+  border-radius: 8px;
+
+  background: #fff1f2;
+
+  color: #be123c;
+
+  font-size: 14px;
+
+  text-align: center;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+  max-width: 1250px;
+
+  min-height: 340px;
+
+  margin: 28px auto;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(15, 23, 42, 0.98),
+      rgba(15, 23, 42, 0.72),
+      rgba(15, 23, 42, 0.35)
+    ),
+    linear-gradient(
+      135deg,
+      #111827,
+      #374151
+    );
+
+  color: white;
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 55px;
+}
+
+.hero-content {
+  max-width: 650px;
+}
+
+.hero-content span {
+  font-size: 12px;
+
+  letter-spacing: 3px;
+
+  font-weight: 700;
+
+  color: #fca5a5;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 5vw, 58px);
+
+  line-height: 1.05;
+
+  margin: 16px 0;
+
+  letter-spacing: -2px;
+}
+
+.hero p {
+  color: #d1d5db;
+
+  max-width: 600px;
+
+  font-size: 17px;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   GENERAL CONTENT
+   ========================================================= */
+
+.content {
+  width: 100%;
+
+  max-width: 1250px;
+
+  margin: auto;
+
+  padding: 20px 30px 70px;
+}
+
+.page-heading {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin: 25px 0;
+}
+
+.page-heading h1,
+.page-heading h2 {
+  margin: 0 0 7px;
+}
+
+.page-heading p {
+  margin: 0;
+
+  color: #6b7280;
+}
+
+.location {
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  padding: 10px 16px;
+
+  border-radius: 20px;
+
+  font-size: 14px;
+}
+
+/* =========================================================
+   MOVIES
+   ========================================================= */
+
+.movie-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fill,
+      minmax(280px, 1fr)
+    );
+
+  gap: 24px;
+}
+
+.movie-card {
+  background: white;
+
+  border-radius: 15px;
+
+  overflow: hidden;
+
+  border: 1px solid #e5e7eb;
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.06);
+
+  transition: 0.25s;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.poster {
+  height: 230px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #4b5563,
+      #111827
+    );
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 75px;
+
+  color: white;
+}
+
+.movie-body {
+  padding: 21px;
+}
+
+.movie-body h3 {
+  margin: 0 0 9px;
+
+  font-size: 23px;
+}
+
+.movie-body p {
+  color: #6b7280;
+
+  line-height: 1.5;
+
+  min-height: 45px;
+}
+
+.tags {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+
+  margin: 17px 0;
+}
+
+.tags span {
+  background: #f3f4f6;
+
+  color: #4b5563;
+
+  padding: 5px 9px;
+
+  border-radius: 5px;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   BACK LINK
+   ========================================================= */
+
+.back-link {
+  border: none;
+
+  background: transparent;
+
+  color: #4b5563;
+
+  font-weight: 700;
+
+  padding: 5px 0;
+
+  margin-bottom: 15px;
+}
+
+.back-link:hover {
+  color: #e50914;
+}
+
+/* =========================================================
+   SELECTED MOVIE
+   ========================================================= */
+
+.selected-movie-header {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  padding: 20px;
+
+  border-radius: 14px;
+
+  margin: 20px 0 35px;
+}
+
+.mini-poster {
+  width: 75px;
+
+  height: 75px;
+
+  flex-shrink: 0;
+
+  border-radius: 10px;
+
+  background: #111827;
+
+  color: white;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 35px;
+}
+
+.selected-movie-header h1 {
+  margin: 0 0 6px;
+}
+
+.selected-movie-header p {
+  margin: 0;
+
+  color: #6b7280;
+}
+
+/* =========================================================
+   DATE SELECTOR
+   ========================================================= */
+
+.flow-title {
+  margin: 25px 0 18px;
+}
+
+.date-grid {
+  display: flex;
+
+  gap: 10px;
+
+  overflow-x: auto;
+
+  padding: 4px 2px 12px;
+}
+
+.date-card {
+  min-width: 82px;
+
+  border: 1px solid #e5e7eb;
+
+  background: white;
+
+  border-radius: 10px;
+
+  padding: 12px 9px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 4px;
+
+  transition: 0.2s;
+}
+
+.date-card:hover {
+  border-color: #e50914;
+}
+
+.date-card span {
+  font-size: 12px;
+
+  color: #6b7280;
+
+  font-weight: 600;
+}
+
+.date-card strong {
+  font-size: 24px;
+}
+
+.date-card small {
+  color: #6b7280;
+}
+
+.date-card.active {
+  background: #e50914;
+
+  border-color: #e50914;
+
+  color: white;
+}
+
+.date-card.active span,
+.date-card.active small {
+  color: white;
+}
+
+/* =========================================================
+   THEATRES
+   ========================================================= */
+
+.theatre-section {
+  margin-top: 35px;
+}
+
+.flow-title-row {
+  margin-bottom: 18px;
+}
+
+.flow-title-row h2 {
+  margin: 0 0 5px;
+}
+
+.flow-title-row p {
+  margin: 0;
+
+  color: #6b7280;
+}
+
+.theatre-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 13px;
+}
+
+.theatre-card {
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 13px;
+
+  padding: 21px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  transition: 0.2s;
+}
+
+.theatre-card:hover {
+  border-color: #d1d5db;
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.06);
+}
+
+.theatre-info h3 {
+  margin: 0 0 7px;
+
+  font-size: 19px;
+}
+
+.theatre-info p {
+  margin: 5px 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+.show-area {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+}
+
+.price {
+  font-weight: 700;
+
+  color: #374151;
+}
+
+.time-btn {
+  min-width: 100px;
+
+  padding: 11px 15px;
+
+  background: #fff;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 7px;
+
+  color: #166534;
+
+  font-weight: 600;
+
+  transition: 0.2s;
+}
+
+.time-btn:hover {
+  border-color: #e50914;
+
+  color: #e50914;
+
+  background: #fff5f5;
+}
+
+/* =========================================================
+   ==================== SEAT PAGE ===========================
+   ========================================================= */
+
+.seat-page {
+  max-width: 1100px;
+
+  padding-top: 25px;
+}
+
+/* Movie/show header */
+
+.seat-header {
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 14px;
+
+  padding: 22px 25px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin: 15px 0 30px;
+}
+
+.seat-header h1 {
+  margin: 0 0 7px;
+
+  font-size: 25px;
+}
+
+.seat-header p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+.seat-price {
+  font-size: 20px;
+
+  font-weight: 800;
+
+  color: #111827;
+}
+
+/* Screen */
+
+.screen-large {
+  width: min(650px, 80%);
+
+  height: 55px;
+
+  margin: 35px auto 40px;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #9ca3af;
+
+  font-size: 12px;
+
+  letter-spacing: 5px;
+
+  font-weight: 700;
+
+  border-top: 5px solid #9ca3af;
+
+  border-radius: 50%;
+
+  transform: perspective(300px)
+    rotateX(-5deg);
+
+  box-shadow:
+    0 -8px 20px
+    rgba(156, 163, 175, 0.25);
+}
+
+/* Seat legend */
+
+.legend {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 28px;
+
+  margin-bottom: 30px;
+
+  font-size: 13px;
+
+  color: #6b7280;
+}
+
+.legend span {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+}
+
+.legend i {
+  width: 17px;
+
+  height: 17px;
+
+  display: inline-block;
+
+  border-radius: 5px;
+}
+
+.legend i.available {
+  background: #e5e7eb;
+
+  border: 1px solid #d1d5db;
+}
+
+.legend i.selected {
+  background: #e50914;
+}
+
+.legend i.booked {
+  background: #4b5563;
+}
+
+/* REAL SEAT GRID */
+
+.seat-grid-real {
+  width: min(620px, 100%);
+
+  margin: 0 auto 40px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(6, 1fr);
+
+  gap: 12px 18px;
+
+  padding: 0 20px;
+}
+
+/* Seat */
+
+.real-seat {
+  height: 44px;
+
+  min-width: 45px;
+
+  border-radius: 7px;
+
+  border: 1px solid #d1d5db;
+
+  background: #f9fafb;
+
+  color: #374151;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  transition:
+    transform 0.15s,
+    background 0.15s,
+    border-color 0.15s;
+}
+
+.real-seat:hover:not(:disabled) {
+  transform: scale(1.07);
+
+  border-color: #e50914;
+
+  background: #fff1f2;
+}
+
+.real-seat.selected {
+  background: #e50914;
+
+  border-color: #e50914;
+
+  color: white;
+
+  box-shadow:
+    0 4px 10px
+    rgba(229, 9, 20, 0.25);
+}
+
+.real-seat.booked {
+  background: #4b5563;
+
+  border-color: #4b5563;
+
+  color: white;
+
+  cursor: not-allowed;
+
+  opacity: 0.85;
+}
+
+/* =========================================================
+   CHECKOUT
+   ========================================================= */
+
+.checkout {
+  width: min(900px, 100%);
+
+  margin: 20px auto 0;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 16px;
+
+  padding: 25px 28px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.checkout h2 {
+  margin: 0 0 10px;
+
+  font-size: 19px;
+}
+
+.checkout p {
+  margin: 6px 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+.checkout-right {
+  min-width: 300px;
+}
+
+.payment label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  color: #374151;
+}
+
+.payment select {
+  width: 100%;
+
+  padding: 11px 12px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 7px;
+
+  background: white;
+
+  outline: none;
+}
+
+.total {
+  font-size: 28px;
+
+  font-weight: 800;
+
+  margin: 16px 0;
+}
+
+/* =========================================================
+   CONFIRMATION
+   ========================================================= */
+
+.confirmation {
+  width: min(650px, 100%);
+
+  margin: 50px auto;
+
+  padding: 20px;
+
+  text-align: center;
+}
+
+.success {
+  width: 78px;
+
+  height: 78px;
+
+  margin: 0 auto 20px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #16a34a;
+
+  color: white;
+
+  font-size: 45px;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 10px 30px
+    rgba(22, 163, 74, 0.25);
+}
+
+.confirmation h1 {
+  margin: 0 0 8px;
+}
+
+.confirmation > p {
+  color: #6b7280;
+}
+
+.ticket {
+  background: white;
+
+  margin-top: 30px;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  text-align: left;
+
+  border: 1px solid #e5e7eb;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+.ticket-top {
+  background: #111827;
+
+  color: white;
+
+  padding: 18px 23px;
+
+  font-weight: 800;
+
+  font-size: 19px;
+}
+
+.ticket-content {
+  padding: 25px;
+}
+
+.ticket-content h2 {
+  text-align: center;
+
+  margin-top: 0;
+}
+
+.ticket-content > p {
+  text-align: center;
+
+  color: #6b7280;
+}
+
+.ticket-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  padding: 12px 0;
+
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+.ticket-row span {
+  color: #6b7280;
+}
+
+.confirmed {
+  color: #15803d;
+
+  font-weight: 800;
+
+  text-align: center;
+
+  margin-top: 20px;
+}
+
+.confirmation-actions {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 20px;
+}
+
+.secondary-btn {
+  padding: 13px 20px;
+
+  border: 1px solid #d1d5db;
+
+  background: white;
+
+  border-radius: 8px;
+
+  font-weight: 700;
+}
+
+.secondary-btn:hover {
+  border-color: #111827;
+}
+
+/* =========================================================
+   BOOKINGS
+   ========================================================= */
+
+.booking-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.booking-item {
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 14px;
+
+  padding: 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.booking-icon {
+  width: 62px;
+
+  height: 62px;
+
+  flex-shrink: 0;
+
+  border-radius: 10px;
+
+  background: #111827;
+
+  color: white;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 28px;
+}
+
+.booking-details {
+  flex: 1;
+}
+
+.booking-details h3 {
+  margin: 0 0 8px;
+}
+
+.booking-details p {
+  margin: 4px 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+.status {
+  display: inline-block;
+
+  margin-top: 7px;
+
+  padding: 5px 10px;
+
+  border-radius: 20px;
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+.status.confirmed {
+  background: #dcfce7;
+
+  color: #15803d;
+}
+
+.status.cancelled {
+  background: #fee2e2;
+
+  color: #dc2626;
+}
+
+.cancel-btn {
+  border: none;
+
+  background: #fee2e2;
+
+  color: #dc2626;
+
+  padding: 10px 15px;
+
+  border-radius: 7px;
+
+  font-weight: 700;
+}
+
+.cancel-btn:hover {
+  background: #fecaca;
+}
+
+/* =========================================================
+   EMPTY
+   ========================================================= */
+
+.empty {
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 15px;
+
+  padding: 65px 20px;
+
+  text-align: center;
+
+  color: #6b7280;
+}
+
+.empty h2 {
+  color: #374151;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+  .navbar {
+    height: auto;
+
+    padding: 14px 18px;
+
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+  .navbar nav {
+    flex-wrap: wrap;
+
+    justify-content: center;
+  }
+
+  .welcome {
+    display: none;
+  }
+
+  .hero {
+    margin: 15px;
+
+    min-height: 300px;
+
+    padding: 35px 25px;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .content {
+    padding: 15px 18px 50px;
+  }
+
+  .theatre-card {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 18px;
+  }
+
+  .show-area {
+    width: 100%;
+
+    justify-content: space-between;
+  }
+
+  .seat-header {
+    align-items: flex-start;
+
+    gap: 15px;
+
+    flex-direction: column;
+  }
+
+  .seat-grid-real {
+    gap: 9px;
+
+    padding: 0 5px;
+  }
+
+  .real-seat {
+    min-width: 0;
+
+    height: 42px;
+  }
+
+  .checkout {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .checkout-right {
+    min-width: 0;
+  }
+
+  .confirmation-actions {
+    flex-direction: column;
+  }
+
+  .booking-item {
+    align-items: flex-start;
+
+    flex-wrap: wrap;
+  }
+
+  .cancel-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .auth-card {
+    padding: 28px 22px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .legend {
+    gap: 13px;
+
+    font-size: 11px;
+  }
+
+  .seat-grid-real {
+    grid-template-columns:
+      repeat(6, 1fr);
+
+    gap: 7px;
+  }
+
+  .real-seat {
+    height: 37px;
+
+    font-size: 11px;
+  }
+
+  .screen-large {
+    width: 90%;
+  }
+}
+
+/* =========================================================
+   MOVIE POSTERS
+   ========================================================= */
+
+.poster {
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-poster-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.poster-placeholder {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+  background: #202838;
+}
+
+.mini-poster {
+  overflow: hidden;
+}
+
+.mini-poster-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

@@ -1,0 +1,5 @@
+package com.cinepass.booking.client;
+
+public class PaymentClient {
+
+}

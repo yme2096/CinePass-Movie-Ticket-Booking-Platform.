@@ -1,0 +1,5 @@
+package com.cinepass.booking.repository;
+
+public class TheatreRepository {
+
+}

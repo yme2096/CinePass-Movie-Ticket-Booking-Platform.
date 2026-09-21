@@ -1,0 +1,61 @@
+package com.cinepass.user.controller;
+
+import java.util.Map;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.cinepass.user.entity.User;
+import com.cinepass.user.repository.UserRepository;
+
+@RestController
+@RequestMapping("/api/auth")
+@CrossOrigin(origins = "http://localhost:5173")
+public class AuthController {
+
+    private final UserRepository userRepository;
+
+    public AuthController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+
+        User user = userRepository
+                .findByEmail(request.email())
+                .orElse(null);
+
+        if (user == null) {
+            return ResponseEntity
+                    .status(401)
+                    .body(Map.of("message", "Invalid email or password"));
+        }
+
+        // TEMPORARY LOGIN CHECK
+        // We will keep your existing BCrypt password system.
+        org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder encoder =
+                new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder();
+
+        if (!encoder.matches(request.password(), user.getPassword())) {
+            return ResponseEntity
+                    .status(401)
+                    .body(Map.of("message", "Invalid email or password"));
+        }
+
+        return ResponseEntity.ok(
+                Map.of(
+                        "id", user.getId(),
+                        "email", user.getEmail(),
+                        "name", user.getName(),
+                        "role", user.getRole()
+                )
+        );
+    }
+
+    public record LoginRequest(
+            String email,
+            String password
+    ) {
+    }
+}

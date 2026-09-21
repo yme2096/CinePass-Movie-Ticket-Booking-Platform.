@@ -1,0 +1,5 @@
+package com.cinepass.booking.dto;
+
+public class BookingRequest {
+
+}

@@ -1,0 +1,183 @@
+package com.cinepass.booking.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cinepass.booking.client.PaymentClient;
+import com.cinepass.booking.dto.BookingRequest;
+import com.cinepass.booking.entity.Booking;
+import com.cinepass.booking.entity.ShowSeat;
+import com.cinepass.booking.repository.BookingRepository;
+import com.cinepass.booking.repository.ShowSeatRepository;
+
+@Service
+public class BookingService {
+
+    private final BookingRepository bookingRepository;
+    private final PaymentClient paymentClient;
+    private final ShowSeatRepository showSeatRepository;
+
+    public BookingService(
+            BookingRepository bookingRepository,
+            PaymentClient paymentClient,
+            ShowSeatRepository showSeatRepository) {
+
+        this.bookingRepository = bookingRepository;
+        this.paymentClient = paymentClient;
+        this.showSeatRepository = showSeatRepository;
+    }
+
+    @Transactional
+    public Booking createBooking(
+            BookingRequest request) {
+
+        List<ShowSeat> seats =
+                showSeatRepository
+                        .findByShowIdAndSeatNumberIn(
+                                request.showId(),
+                                request.seatNumbers()
+                        );
+
+        if (seats.size() != request.seatNumbers().size()) {
+
+            throw new RuntimeException(
+                    "One or more seats do not exist."
+            );
+        }
+
+        for (ShowSeat seat : seats) {
+
+            if ("BOOKED".equals(seat.getStatus())) {
+
+                throw new RuntimeException(
+                        "Seat " +
+                        seat.getSeatNumber() +
+                        " is already booked."
+                );
+            }
+        }
+
+        // Mark seats booked
+        for (ShowSeat seat : seats) {
+            seat.setStatus("BOOKED");
+        }
+
+        showSeatRepository.saveAll(seats);
+
+        double totalAmount =
+                request.seatNumbers().size() * 150.0;
+
+        Booking booking =
+                new Booking();
+
+        booking.setUserId(
+                request.userId()
+        );
+
+        booking.setMovieId(
+                request.movieId()
+        );
+
+        booking.setShowId(
+                request.showId()
+        );
+
+        booking.setSeats(
+                request.seatNumbers().size()
+        );
+
+        booking.setSeatNumbers(
+                String.join(
+                        ", ",
+                        request.seatNumbers()
+                )
+        );
+
+        booking.setTotalAmount(
+                totalAmount
+        );
+
+        booking.setStatus(
+                "PENDING"
+        );
+
+        booking =
+                bookingRepository.save(
+                        booking
+                );
+
+        PaymentClient.PaymentResponse payment =
+                paymentClient.makePayment(
+                        booking.getId(),
+                        request.userId(),
+                        totalAmount,
+                        request.paymentMethod()
+                );
+
+        if (payment != null &&
+                "SUCCESS".equals(payment.status())) {
+
+            booking.setPaymentId(
+                    payment.id()
+            );
+
+            booking.setStatus(
+                    "CONFIRMED"
+            );
+
+        } else {
+
+            // Payment failed → release seats
+
+            for (ShowSeat seat : seats) {
+                seat.setStatus("AVAILABLE");
+            }
+
+            showSeatRepository.saveAll(seats);
+
+            booking.setStatus(
+                    "PAYMENT_FAILED"
+            );
+        }
+
+        return bookingRepository.save(
+                booking
+        );
+    }
+
+    public List<Booking> getAllBookings() {
+        return bookingRepository.findAll();
+    }
+
+    public Booking getBookingById(Long id) {
+
+        return bookingRepository
+                .findById(id)
+                .orElse(null);
+    }
+
+    public void deleteBooking(Long id) {
+
+        bookingRepository.deleteById(id);
+    }
+
+    public Booking cancelBooking(Long id) {
+
+        Booking booking =
+                bookingRepository
+                        .findById(id)
+                        .orElse(null);
+
+        if (booking == null) {
+            return null;
+        }
+
+        booking.setStatus("CANCELLED");
+
+        return bookingRepository.save(
+                booking
+        );
+    }
+}

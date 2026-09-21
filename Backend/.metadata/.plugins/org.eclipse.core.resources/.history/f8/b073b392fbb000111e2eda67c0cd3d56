@@ -1,0 +1,68 @@
+package com.cinepass.booking.entity;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "movie_shows")
+public class MovieShow {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private Long movieId;
+
+    private LocalDate showDate;
+
+    private LocalTime startTime;
+
+    private Double price;
+
+    @ManyToOne
+    @JoinColumn(name = "screen_id")
+    private MovieScreen screen;
+
+    public MovieShow() {
+    }
+
+    public MovieShow(
+            Long movieId,
+            LocalDate showDate,
+            LocalTime startTime,
+            Double price,
+            MovieScreen screen) {
+
+        this.movieId = movieId;
+        this.showDate = showDate;
+        this.startTime = startTime;
+        this.price = price;
+        this.screen = screen;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Long getMovieId() {
+        return movieId;
+    }
+
+    public LocalDate getShowDate() {
+        return showDate;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public MovieScreen getScreen() {
+        return screen;
+    }
+}

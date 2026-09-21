@@ -1,0 +1,13 @@
+public Movie(
+        String title,
+        String description,
+        String language,
+        Integer duration,
+        String genre) {
+
+    this.title = title;
+    this.description = description;
+    this.language = language;
+    this.duration = duration;
+    this.genre = genre;
+}

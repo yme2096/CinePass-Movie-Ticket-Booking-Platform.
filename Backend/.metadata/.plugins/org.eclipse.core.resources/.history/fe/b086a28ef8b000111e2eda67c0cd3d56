@@ -1,0 +1,284 @@
+package com.cinepass.booking.config;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.cinepass.booking.entity.MovieScreen;
+import com.cinepass.booking.entity.MovieShow;
+import com.cinepass.booking.entity.ShowSeat;
+import com.cinepass.booking.entity.Theatre;
+import com.cinepass.booking.repository.MovieScreenRepository;
+import com.cinepass.booking.repository.MovieShowRepository;
+import com.cinepass.booking.repository.ShowSeatRepository;
+import com.cinepass.booking.repository.TheatreRepository;
+
+@Configuration
+public class DataSeeder {
+
+    @Bean
+    CommandLineRunner seedData(
+            TheatreRepository theatreRepository,
+            MovieScreenRepository screenRepository,
+            MovieShowRepository showRepository,
+            ShowSeatRepository seatRepository) {
+
+        return args -> {
+
+            if (theatreRepository.count() > 0) {
+                return;
+            }
+
+            // ==========================
+            // THEATRES
+            // ==========================
+
+            Theatre pvr = theatreRepository.save(
+                    new Theatre(
+                            "PVR Cinemas",
+                            "Vijayawada",
+                            "Trendset Mall"
+                    )
+            );
+
+            Theatre cinepolis = theatreRepository.save(
+                    new Theatre(
+                            "Cinepolis",
+                            "Vijayawada",
+                            "PVP Square"
+                    )
+            );
+
+            Theatre inox = theatreRepository.save(
+                    new Theatre(
+                            "INOX",
+                            "Vijayawada",
+                            "LEPL Mall"
+                    )
+            );
+
+            // ==========================
+            // SCREENS
+            // ==========================
+
+            MovieScreen pvr1 =
+                    screenRepository.save(
+                            new MovieScreen(
+                                    "Screen 1",
+                                    30,
+                                    pvr
+                            )
+                    );
+
+            MovieScreen pvr2 =
+                    screenRepository.save(
+                            new MovieScreen(
+                                    "Screen 2",
+                                    30,
+                                    pvr
+                            )
+                    );
+
+            MovieScreen cinepolis1 =
+                    screenRepository.save(
+                            new MovieScreen(
+                                    "Screen 1",
+                                    30,
+                                    cinepolis
+                            )
+                    );
+
+            MovieScreen inox1 =
+                    screenRepository.save(
+                            new MovieScreen(
+                                    "Screen 1",
+                                    30,
+                                    inox
+                            )
+                    );
+
+            // ==========================
+            // DATES
+            // ==========================
+
+            LocalDate today =
+                    LocalDate.now();
+
+            // ==========================
+            // SHOWS
+            // Movie ID = 1 (Avengers)
+            // ==========================
+
+            createShow(
+                    showRepository,
+                    seatRepository,
+                    1L,
+                    today,
+                    LocalTime.of(10, 0),
+                    150.0,
+                    pvr1,
+                    new String[]{"3", "4", "10", "11"}
+            );
+
+            createShow(
+                    showRepository,
+                    seatRepository,
+                    1L,
+                    today,
+                    LocalTime.of(13, 30),
+                    150.0,
+                    pvr1,
+                    new String[]{"2", "5", "8"}
+            );
+
+            createShow(
+                    showRepository,
+                    seatRepository,
+                    1L,
+                    today,
+                    LocalTime.of(18, 30),
+                    150.0,
+                    pvr2,
+                    new String[]{"3", "4", "10", "11"}
+            );
+
+            createShow(
+                    showRepository,
+                    seatRepository,
+                    1L,
+                    today,
+                    LocalTime.of(21, 30),
+                    180.0,
+                    pvr2,
+                    new String[]{"1", "2", "7"}
+            );
+
+            createShow(
+                    showRepository,
+                    seatRepository,
+                    1L,
+                    today.plusDays(1),
+                    LocalTime.of(11, 0),
+                    170.0,
+                    cinepolis1,
+                    new String[]{"4", "5", "12"}
+            );
+
+            createShow(
+                    showRepository,
+                    seatRepository,
+                    1L,
+                    today.plusDays(1),
+                    LocalTime.of(14, 30),
+                    170.0,
+                    cinepolis1,
+                    new String[]{"1", "8", "9"}
+            );
+
+            createShow(
+                    showRepository,
+                    seatRepository,
+                    1L,
+                    today.plusDays(1),
+                    LocalTime.of(19, 0),
+                    170.0,
+                    cinepolis1,
+                    new String[]{"3", "4", "15"}
+            );
+
+            createShow(
+                    showRepository,
+                    seatRepository,
+                    1L,
+                    today.plusDays(2),
+                    LocalTime.of(9, 30),
+                    160.0,
+                    inox1,
+                    new String[]{"2", "3", "10"}
+            );
+
+            createShow(
+                    showRepository,
+                    seatRepository,
+                    1L,
+                    today.plusDays(2),
+                    LocalTime.of(12, 45),
+                    160.0,
+                    inox1,
+                    new String[]{"5", "6", "14"}
+            );
+
+            createShow(
+                    showRepository,
+                    seatRepository,
+                    1L,
+                    today.plusDays(2),
+                    LocalTime.of(17, 30),
+                    160.0,
+                    inox1,
+                    new String[]{"7", "8", "20"}
+            );
+
+            System.out.println(
+                    "===================================="
+            );
+
+            System.out.println(
+                    "CinePass sample theatre data created!"
+            );
+
+            System.out.println(
+                    "===================================="
+            );
+        };
+    }
+
+    private void createShow(
+            MovieShowRepository showRepository,
+            ShowSeatRepository seatRepository,
+            Long movieId,
+            LocalDate date,
+            LocalTime time,
+            Double price,
+            MovieScreen screen,
+            String[] bookedSeats) {
+
+        MovieShow show =
+                showRepository.save(
+                        new MovieShow(
+                                movieId,
+                                date,
+                                time,
+                                price,
+                                screen
+                        )
+                );
+
+        for (int i = 1; i <= 30; i++) {
+
+            String seatNumber =
+                    String.valueOf(i);
+
+            String status = "AVAILABLE";
+
+            for (String booked : bookedSeats) {
+
+                if (booked.equals(seatNumber)) {
+                    status = "BOOKED";
+                    break;
+                }
+            }
+
+            seatRepository.save(
+                    new ShowSeat(
+                            show,
+                            seatNumber,
+                            status
+                    )
+            );
+        }
+    }
+}

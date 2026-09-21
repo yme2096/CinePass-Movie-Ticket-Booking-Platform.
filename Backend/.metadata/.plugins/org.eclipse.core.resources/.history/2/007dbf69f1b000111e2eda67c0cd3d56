@@ -1,0 +1,103 @@
+package com.cinepass.booking.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.cinepass.booking.client.PaymentClient;
+import com.cinepass.booking.entity.Booking;
+import com.cinepass.booking.repository.BookingRepository;
+
+@Service
+public class BookingService {
+
+    private final BookingRepository bookingRepository;
+
+    private final PaymentClient paymentClient;
+
+    public BookingService(
+            BookingRepository bookingRepository,
+            PaymentClient paymentClient) {
+
+        this.bookingRepository = bookingRepository;
+        this.paymentClient = paymentClient;
+    }
+
+    // Create booking and make payment
+    public Booking createBooking(
+            Long userId,
+            Long movieId,
+            Integer seats,
+            Double totalAmount,
+            String paymentMethod) {
+
+        // Create booking
+        Booking booking = new Booking();
+
+        booking.setUserId(userId);
+        booking.setMovieId(movieId);
+        booking.setSeats(seats);
+        booking.setTotalAmount(totalAmount);
+        booking.setStatus("PENDING");
+
+        // Save booking
+        booking = bookingRepository.save(booking);
+
+        // Make payment
+        PaymentClient.PaymentResponse payment =
+                paymentClient.makePayment(
+                        booking.getId(),
+                        userId,
+                        totalAmount,
+                        paymentMethod
+                );
+
+        // Check payment result
+        if (payment != null &&
+                "SUCCESS".equals(payment.status())) {
+
+            booking.setPaymentId(payment.id());
+            booking.setStatus("CONFIRMED");
+
+        } else {
+
+            booking.setStatus("PAYMENT_FAILED");
+        }
+
+        // Save final booking
+        return bookingRepository.save(booking);
+    }
+
+    // Get all bookings
+    public List<Booking> getAllBookings() {
+
+        return bookingRepository.findAll();
+    }
+
+    // Get booking by ID
+    public Booking getBookingById(Long id) {
+
+        return bookingRepository.findById(id).orElse(null);
+    }
+
+    // Cancel booking
+    public Booking cancelBooking(Long id) {
+
+        Booking booking =
+                bookingRepository.findById(id).orElse(null);
+
+        if (booking == null) {
+            return null;
+        }
+
+        booking.setStatus("CANCELLED");
+
+        return bookingRepository.save(booking);
+    }
+
+    // Delete booking
+    public void deleteBooking(Long id) {
+
+        bookingRepository.deleteById(id);
+    }
+}
